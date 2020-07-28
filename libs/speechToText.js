@@ -13,10 +13,10 @@ class SpeechToText {
     });
   }
 
-  async createJob (filepath, contentType) {
+  async createJob (path, contentType) {
     const connection = this.authenticate();
     return await connection.createJob({
-      audio: fs.createReadStream(filepath),
+      audio: fs.createReadStream(path),
       contentType: contentType
     });
   }
