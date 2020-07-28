@@ -8,7 +8,6 @@ const router = express.Router();
 router.post('/upload', upload.single('speech'), async (req, res, next) => {
   try {
     const file = req.file;
-    console.log(file, __dirname);
     const audioService = new AudioService(file);
     const response = await audioService.convertToSpeech();
     res.json(response);

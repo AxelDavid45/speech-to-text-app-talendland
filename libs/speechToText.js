@@ -14,7 +14,7 @@ class SpeechToText {
   }
 
   async createJob (path, contentType) {
-    const connection = this.authenticate();
+    const connection = await this.authenticate();
     return await connection.createJob({
       audio: fs.createReadStream(path),
       contentType: contentType

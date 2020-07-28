@@ -7,14 +7,19 @@ class AudioService {
   async convertToSpeech() {
     const speech = new SpeechTextLib();
     const job = await speech.createJob(this.file.path, 'audio/mpeg');
-    if (job.results.id && job.results.id ==='processing') {
+
+    if (job.result.id && job.result.status ==='processing') {
       return {
         status: job.status,
-        id: job.results.id,
+        id: job.result.id,
         message: 'processing'
-      }
+      };
+    } else {
+      return {
+        status: job.status,
+        message: job.statusText
+      };
     }
-    console.log(job);
   }
 }
 
