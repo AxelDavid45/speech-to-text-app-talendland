@@ -1,3 +1,4 @@
+'use strict'
 const IbmSpeechToText = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const config = require('../configs');
@@ -22,8 +23,8 @@ class SpeechToText {
   }
 
   async checkJob (jobId) {
-    const connection = this.authenticate();
-    return await connection.checkJob(jobId);
+    const connection = await this.authenticate();
+    return await connection.checkJob({ id: jobId });
   }
 }
 

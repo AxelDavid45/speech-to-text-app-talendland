@@ -1,3 +1,4 @@
+'use strict'
 const multer = require('multer');
 const Boom = require('@hapi/boom');
 
