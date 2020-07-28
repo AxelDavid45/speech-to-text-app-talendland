@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
 const config = require('./configs/index');
+const routes = require('./routes/routes');
 
-app.get('/', (req, res) => {
-  res.end('Hello world');
-});
+app.use(routes);
 
 app.listen(config.port, () => console.log(`Listening in port ${config.port}`));
