@@ -1,6 +1,6 @@
 const IbmSpeechToText = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
-const config = require('../configs/index');
+const config = require('../configs');
 
 class SpeechToText {
   autenticate () {
