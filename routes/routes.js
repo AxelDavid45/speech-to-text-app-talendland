@@ -1,7 +1,10 @@
+'use strict'
 const express = require('express');
+const Boom = require('@hapi/boom');
 const router = express.Router();
 const multer = require('multer');
 
+// Set the multimedia
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, `${__dirname}/../uploads`);
@@ -18,9 +21,16 @@ router.post('/upload', upload.single('speech'), (req, res, next) => {
     const file = req.file;
     // Verify MIME-type
     if (file.mimetype !== 'audio/mpeg') {
-      throw new Error('The mime-type is not compatible');
+      throw Boom.badRequest('File type not compatible, you must upload .mp3 files');
     }
-    res.end('completed');
+
+    res.json({
+      status: 'completed',
+      data: {
+        file: file.fieldname,
+        transcript: 'transcript'
+      }
+    });
   } catch (err) {
     next(err);
   }
