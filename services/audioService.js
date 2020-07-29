@@ -10,9 +10,9 @@ class AudioService {
     this.mongo = new MongoDb();
   }
 
-  async convertToSpeech () {
+  async convertToSpeech (model = 'es-MX_BroadbandModel') {
     const speech = new SpeechTextLib();
-    const job = await speech.createJob(this.file.path, 'audio/mpeg');
+    const job = await speech.createJob(this.file.path, 'audio/mpeg', model);
 
     if (job.result.id && job.result.status === 'processing') {
       return {
