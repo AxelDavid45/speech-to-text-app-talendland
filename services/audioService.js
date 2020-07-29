@@ -43,9 +43,9 @@ class AudioService {
 
       const modelData = {
         status: job.status,
-        id: job.result.id,
+        id: job.result.id.trim(),
         message: job.result.status,
-        transcript: transcript
+        transcript: transcript.trim()
       };
 
       // Save in the db
@@ -59,7 +59,7 @@ class AudioService {
 
     return {
       status: job.status,
-      id: job.result.id,
+      id: job.result.id.trim(),
       message: job.result.status,
       transcript: null
     };
