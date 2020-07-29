@@ -9,5 +9,7 @@ app.use(routes);
 // Middleware
 app.use(errorHandling);
 
+
+// eslint-disable-next-line no-console
 app.listen(config.port, () => console.log(`Listening in port ${config.port}`));
 
