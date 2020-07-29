@@ -9,5 +9,5 @@ const Transcript = new mongoose.Schema({
 
 module.exports = {
   schema: Transcript,
-  model: mongoose.model('Transcript', Transcript)
+  TranscriptModel: mongoose.model('Transcript', Transcript)
 };
