@@ -41,7 +41,7 @@ class AudioService {
         return accum + current.alternatives[0].transcript;
       }, '');
 
-      const response = {
+      const modelData = {
         status: job.status,
         id: job.result.id,
         message: job.result.status,
@@ -49,12 +49,12 @@ class AudioService {
       };
 
       // Save in the db
-      const search = await TranscriptModel.find({ id: response.id }).countDocuments();
+      const search = await TranscriptModel.find({ id: modelData.id }).countDocuments();
       if (search === 0) {
-        const transcriptDocument = new TranscriptModel(response);
+        const transcriptDocument = new TranscriptModel(modelData);
         await transcriptDocument.save();
       }
-      return response;
+      return modelData;
     }
 
     return {
