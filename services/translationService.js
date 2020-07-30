@@ -4,6 +4,10 @@ const MongoDb = require('../libs/mongoose');
 const { TranscriptModel } = require('../database/schemas/transcriptSchema');
 
 class TranslationService {
+  async connect () {
+    return new MongoDb();
+  }
+
   async translate (id, transcript, target) {
     // Verify if parameters exists
     if (!id && !transcript && target) {
@@ -21,17 +25,13 @@ class TranslationService {
     const translation = await translator.translate(transcript.trim(), target);
     if (translation.status === 200 && translation.result.word_count > 0) {
       // Save result in atlas
-      await new MongoDb();
-      const document = await TranscriptModel.find({id: id.trim()})
-      const update = await TranscriptModel.updateOne(
-        { _id: document._id },
-        {translation: translation }
+      await this.connect();
+      const document = await TranscriptModel.findOneAndUpdate(
+        { id: id.trim() },
+        { $set: { translation: translation.result.translations[0].translation } },
+        { new: true }
       );
-      console.log(update);
-      // const document = await TranscriptModel.updateOne(
-      //   { id: id },
-      //   { $set: { translation: translation } });
-      if (document.nModified === 1) {
+      if (document) {
         return {
           status: translation.status,
           id: id.trim(),
