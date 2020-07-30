@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 require('dotenv').config();
 
 const config = {
@@ -10,6 +10,8 @@ const config = {
   mongoUser: process.env.MONGO_USR,
   mongoPass: process.env.MONGO_PASS,
   mongoHost: process.env.MONGO_HOST,
+  translatorApiKey: process.env.TRANSLATOR_API_KEY,
+  translatorUrl: process.env.TRANSLATOR_URL
 };
 
 module.exports = config;

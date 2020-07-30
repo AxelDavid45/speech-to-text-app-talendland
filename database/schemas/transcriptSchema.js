@@ -5,6 +5,7 @@ const Transcript = new mongoose.Schema({
   id: String,
   message: String,
   transcript: String,
+  translation: { type: String, required: false }
 })
 
 module.exports = {
