@@ -1,4 +1,4 @@
-const NaturalLanguageUnderstandingV1  = require('ibm-watson/natural-language-understanding/v1');
+const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const {
   lanUnderstandingApiKey,
@@ -6,17 +6,17 @@ const {
 } = require('../configs/index');
 
 class LanguageAnalyzer {
-  authenticate() {
+  authenticate () {
     return new NaturalLanguageUnderstandingV1({
       version: '2019-07-12',
       authenticator: new IamAuthenticator({
-        apikey: lanUnderstandingApiKey,
+        apikey: lanUnderstandingApiKey
       }),
-      url: lanUnderstandingUrl,
-    })
+      url: lanUnderstandingUrl
+    });
   }
 
-  async analyze(text) {
+  async analyze (text) {
     const connection = this.authenticate();
     const analyzeParams = {
       'text': text,
@@ -29,8 +29,7 @@ class LanguageAnalyzer {
         }
       }
     };
-    const response = await connection.analyze(analyzeParams);
-    console.log(response);
+    return await connection.analyze(analyzeParams);
   }
 }
 
