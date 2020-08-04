@@ -15,7 +15,8 @@ router.post('/upload', upload.single('speech'), async (req, res, next) => {
     }
     const audioService = new AudioService(file);
     const response = await audioService.convertToSpeech();
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.json(response);
   } catch (err) {
     next(err);
@@ -30,7 +31,8 @@ router.get('/status/:jobId', async (req, res, next) => {
     }
     const audioService = new AudioService();
     const response = await audioService.getSpeechTransformed(jobId);
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.json(response);
   } catch (err) {
     next(err);
@@ -46,7 +48,8 @@ router.post('/translate/:id', express.json(), async (req, res, next) => {
     // Create the service
     const translationService = new TranslationService();
     const response = await translationService.translate(id, transcript, target);
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.json(response);
   } catch (err) {
     next(err);
@@ -60,7 +63,8 @@ router.post('/analyze', express.json(), async(req, res, next) => {
     const { text } = req.body;
     const analyzer = new AnalyzerService();
     const response = await analyzer.analyze(text);
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.json(response);
 
   } catch(err) {
