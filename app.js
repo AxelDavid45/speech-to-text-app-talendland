@@ -9,9 +9,9 @@ const errorHandling = require('./utils/middleware/errorHandling');
 // Using cors middleware
 const corsOptions = {
   origin: true,
-  methods: ['GET', 'POST']
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
 };
-
 app.use(cors(corsOptions));
 app.use(routes);
 // Middleware
