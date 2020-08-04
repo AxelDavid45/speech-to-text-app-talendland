@@ -11,7 +11,9 @@ const config = {
   mongoPass: process.env.MONGO_PASS,
   mongoHost: process.env.MONGO_HOST,
   translatorApiKey: process.env.TRANSLATOR_API_KEY,
-  translatorUrl: process.env.TRANSLATOR_URL
+  translatorUrl: process.env.TRANSLATOR_URL,
+  lanUnderstandingApiKey: process.env.LANUNDERSTAN_API_KEY,
+  lanUnderstandingUrl:process.env.LANUNDERSTAN_URL,
 };
 
 module.exports = config;

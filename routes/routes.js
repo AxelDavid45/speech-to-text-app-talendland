@@ -1,9 +1,10 @@
 'use strict';
 const express = require('express');
 const upload = require('../utils/middleware/handleIncomingFIle');
-const AudioService = require('../services/audioService');
 const Boom = require('@hapi/boom');
 const router = express.Router();
+const AudioService = require('../services/audioService');
+const AnalyzerService = require('../services/analyzerService');
 const TranslationService = require('../services/translationService');
 
 router.post('/upload', upload.single('speech'), async (req, res, next) => {
@@ -49,5 +50,20 @@ router.post('/translate/:id', express.json(), async (req, res, next) => {
   }
 
 });
+
+router.post('/analyze', express.json(), async(req, res, next) => {
+  try {
+
+    const { text } = req.body;
+    const analyzer = new AnalyzerService();
+    const response = await analyzer.analyze(text);
+    res.json(response);
+
+  } catch(err) {
+    next(err);
+  }
+
+})
+
 
 module.exports = router;
