@@ -14,6 +14,7 @@ const config = {
   translatorUrl: process.env.TRANSLATOR_URL,
   lanUnderstandingApiKey: process.env.LANUNDERSTAN_API_KEY,
   lanUnderstandingUrl:process.env.LANUNDERSTAN_URL,
+  urlSite: 'https://ibm-challenge-backend.herokuapp.com/'
 };
 
 module.exports = config;
