@@ -1,18 +1,10 @@
 'use strict'
 const express = require('express');
-const cors = require('cors');
 const app = express();
 const config = require('./configs/index');
 const routes = require('./routes/routes');
 const errorHandling = require('./utils/middleware/errorHandling');
 
-// Using cors middleware
-const corsOptions = {
-  origin: true,
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-};
-app.use(cors(corsOptions));
 app.use(routes);
 // Middleware
 app.use(errorHandling);
