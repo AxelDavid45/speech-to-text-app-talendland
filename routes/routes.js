@@ -1,5 +1,6 @@
 'use strict';
 const express = require('express');
+const cors = require('cors');
 const upload = require('../utils/middleware/handleIncomingFIle');
 const Boom = require('@hapi/boom');
 const router = express.Router();
@@ -7,6 +8,7 @@ const AudioService = require('../services/audioService');
 const AnalyzerService = require('../services/analyzerService');
 const TranslationService = require('../services/translationService');
 
+router.use(cors());
 router.post('/upload', upload.single('speech'), async (req, res, next) => {
   try {
     const file = req.file;
