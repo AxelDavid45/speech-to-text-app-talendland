@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
       cb(null, `${file.fieldname}_${Date.now()}.mp3`);
     else if(file.mimetype === 'audio/mp4')
       cb(null, `${file.fieldname}_${Date.now()}.mp4`);
-    else if(file.mimetype === 'audio/x--m4a')
+    else if(file.mimetype === 'audio/x-m4a')
       cb(null, `${file.fieldname}_${Date.now()}.m4a`);
   }
 });
