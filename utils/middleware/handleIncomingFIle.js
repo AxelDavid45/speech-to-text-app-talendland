@@ -5,7 +5,7 @@ const Boom = require('@hapi/boom');
 // Set the multimedia and verify the file
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (file.mimetype !== 'audio/mpeg') {
+    if (file.mimetype !== 'audio/mpeg' || file.mimetype !== 'audio/mp4') {
       cb(Boom.badRequest('File type not compatible, you must upload .mp3 files'), null);
     } else {
       cb(null, `${__dirname}/../../uploads`);
